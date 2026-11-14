@@ -1,6 +1,6 @@
 # Concepts handbook
 
-The ideas behind every app I build, explained once, in plain language. Each App Guide links here instead of explaining the same idea again. Version 1, 14 November 2026.
+The ideas behind every app I build, explained once, in plain language. Each App Guide links here instead of explaining the same idea again. Version 2, 14 November 2026.
 
 **How to read an entry.** Every entry answers one question in six parts: the question, the answer in one sentence, an everyday picture, the term defined, why it was chosen over the alternative, and what would change the answer. The test for every entry: after reading it once, could you explain it to someone with no background, without looking?
 
@@ -43,6 +43,15 @@ The examples come from two apps:
 25. What are Claude's Instructions, Context files and Memory?
 26. What is an artifact?
 27. What are the Brief, the ADR and the App Guide for?
+
+**Part 4: Working on GitHub, step by step**
+28. Where am I when I'm on GitHub?
+29. What happens when I upload a file and click "Commit changes"?
+30. Why does a Tour Timer code change touch three places?
+31. Why does a Claude project link to GitHub instead of holding uploaded files, and what is "Sync now"?
+32. What is the routine after any change, and who does what?
+
+**Questions asked:** every question, with the entry that answers it.
 
 **Glossary** at the end.
 
@@ -248,7 +257,7 @@ The examples come from two apps:
 
 **Picture:** the printed menu on the tables, as opposed to the draft on the manager's desk. Changing the draft changes nothing until the new menu is printed and put out.
 
-**Term:** *deployment:* the running copy. For GitHub Pages, every commit to main deploys automatically within minutes. For Apps Script it is manual: Deploy, Manage deployments, edit, choose New version. Tour Timer's live server is deployment version 2, described "v1.0.0 test baseline".
+**Term:** *deployment:* the running copy. For GitHub Pages, every commit to main deploys automatically within minutes. For Apps Script it is manual: Deploy, Manage deployments, edit, choose New version. Tour Timer's live server is deployment version 3 (v1.0.1, 13 November 2026).
 
 **Why it matters:** saving code in the Apps Script editor does not change what the phones talk to. Only a new deployment version does. Choosing New deployment instead of editing the existing one creates a new web address that the pages do not know, and the TV and phones lose their connection.
 
@@ -260,7 +269,7 @@ The examples come from two apps:
 
 **Term:** *tag:* a permanent label on one commit, such as `v1.0.0`. *Release:* a tag plus notes on what changed, shown on GitHub. *Version number (SemVer):* three numbers, MAJOR.MINOR.PATCH. MAJOR goes up when something users rely on changes, MINOR when something is added, PATCH for fixes. *CHANGELOG:* the file listing every release, newest first.
 
-**Real example:** Tour Timer's release `v1.0.0 test baseline`, 10 November 2026.
+**Real example:** Tour Timer's releases `v1.0.0 test baseline` (10 November 2026) and `v1.0.1` (13 November 2026, two rule changes and a form fix, so a PATCH).
 
 ### 19. What is a rollback?
 
@@ -309,6 +318,8 @@ The examples come from two apps:
 
 **Rotate:** to replace a secret with a new one after it has been seen by anyone who should not have it, such as appearing in a screenshot.
 
+**With sample data:** a seen code puts little at risk, because the data is not real; the worst case is fake entries in a test. So rotating can wait, but every code and key is replaced before go-live (Tour Timer: SETUP.md, Part F).
+
 ---
 
 ## Part 3: How the building is done
@@ -341,7 +352,7 @@ The examples come from two apps:
 
 **Picture:** a new staff member's first morning: the house rules (Instructions), the filing cabinet of reference documents (Context), and notes from previous shifts (Memory).
 
-**Terms:** *Instructions:* the rules typed into the project. *Context files:* files and links Claude reads in every chat (called project knowledge in chat projects). Large context is searched rather than read whole, so clear file names help. *Memory:* what Claude has learned in that project's chats; it stays with that project. Chats themselves do not see each other.
+**Terms:** *Instructions:* the rules typed into the project. *Context files:* files and links Claude reads in every chat (called project knowledge in chat projects). Files linked from GitHub update only when you click Sync now (entry 31). Large context is searched rather than read whole, so clear file names help. *Memory:* what Claude has learned in that project's chats; it stays with that project. Chats themselves do not see each other.
 
 **Why one project per app:** each project's context then holds only that app, so nothing is mixed up between apps, and a successor can be handed one project and one repo.
 
@@ -366,6 +377,121 @@ The examples come from two apps:
 **Why:** in three months nobody remembers why something was done. These three documents make the reasons permanent, and let a successor run the app within a week.
 
 ---
+
+## Part 4: Working on GitHub, step by step
+
+These entries explain the clicks: where you are on the screen, what each button does, and why the steps come in the order they do.
+
+### 28. Where am I when I'm on GitHub?
+
+**Answer:** inside one repository, looking at one folder or file, on one branch. The web address tells you which.
+
+**Picture:** a building directory. The account is the building, the repo is the office, the folder is the cabinet, the file is the document.
+
+**Reading the address:** `github.com/aljoclaassen/tour-timer/blob/main/docs/guide.md` reads as: account `aljoclaassen`, repo `tour-timer`, viewing a file (`blob`), on branch `main`, folder `docs`, file `guide.md`. An address with `upload/main/docs` means you are uploading into the `docs` folder on main. An address with `tree` means you are looking at a folder.
+
+**The parts of a repo page you use:**
+
+| Where | What it is | Used for |
+| --- | --- | --- |
+| Code tab, the file list | The current files | Opening, uploading, replacing files |
+| "N commits" link, above the file list, with a clock icon | The version history | Seeing what changed, when and why (entry 15) |
+| Releases, in the right-hand column | The named versions | Tagging a release (entries 18 and 32) |
+| Settings tab, then Pages | Hosting settings | Only for Tour Timer's pages; rarely touched |
+
+**Why it matters:** you upload into whichever folder you are standing in. Before uploading, check the address shows the right folder, or the file lands in the wrong place.
+
+### 29. What happens when I upload a file and click "Commit changes"?
+
+**Answer:** the file goes into the folder you are in; if a file with the same name is already there, it is replaced, and the old version stays in the history.
+
+**Picture:** putting a new page into the binder in front of the old one (entry 14). Nothing is thrown away.
+
+**The steps and why:**
+1. **Add file, then Upload files**, while standing in the right folder. Why: the folder decides where it lands.
+2. **The commit summary box** under the uploaded files. Replace "Add files via upload" with what changed and why, for example "fix: bring Core.gs up to date with the live editor". Why: this is the only note future you, or a successor, will see in the history.
+3. **Commit directly to the main branch**, then **Commit changes**. Why: main is the live version. For now we work directly on main (entry 16).
+
+**Watch out for Tour Timer:** its pages are hosted from main (entry 6), so uploading into `assets/`, or changing `tv.html`, `phone.html` or `admin.html`, changes what the TV and phones show within a few minutes. Uploading into `docs/` changes nothing that runs. A change to the pages also needs the cache number in `sw.js` raised, so the devices fetch the new files (entry 12).
+
+**What would change it:** once branches are in use, step 3 becomes "create a new branch", and the change goes live only when the pull request is merged.
+
+### 30. Why does a Tour Timer code change touch three places?
+
+**Answer:** the repo keeps the record, but the server's code runs in Google, so it must be pasted there and then deployed separately.
+
+**Picture:** a recipe book (the repo), the kitchen (the Apps Script editor) and service (the deployment). Changing the recipe in the book does not change what the kitchen cooks, and a new dish in the kitchen is not served until it goes out.
+
+**The order, and why:**
+1. **Repo first:** commit the change (entry 29). Why: the record is never behind what is running.
+2. **Apps Script editor:** paste the changed file in and save. Why: GitHub cannot run Apps Script; the editor is where the server's code lives.
+3. **Deploy, Manage deployments, edit (the pencil), Version: New version, add a description such as "v1.0.1", Deploy.** Why: saving in the editor does not change what the phones talk to; only a new version does. Never use "New deployment", which makes a new web address the pages don't know (entry 17).
+4. **CHANGELOG and a release** (entries 18 and 32). Why: so anyone can see which version is running.
+
+**Real example:** on 13 November, steps 2 and 3 were done (deployment version 3) and `core.js` was updated, but the repo's copy of `Core.gs` was not. Nothing broke, but the record was wrong. That is drift (entry 20). It was found on 14 November by comparing fingerprints of the files, and fixed.
+
+### 31. Why does a Claude project link to GitHub instead of holding uploaded files, and what is "Sync now"?
+
+**Answer:** a link reads the original in the repo, so there is one copy to keep right instead of one per project. "Sync now" is the button that fetches the newest version.
+
+**Picture:** an uploaded file is a photocopy: right on the day it is made, then quietly out of date. A GitHub link is a key to the filing cabinet. "Sync now" is opening the drawer again to see what is new.
+
+**Term:** *sync:* bringing a copy up to date with the original. In a Claude project, GitHub files are fetched when you add them, and again only when someone clicks **Sync now** in the project's Context. It does not happen on its own, and it cannot be set to happen on a schedule.
+
+**Why links, not uploads:** uploaded files cannot be downloaded or moved later, and each must be replaced by hand in every project that uses it. The APP Ideas project ended up holding 22 uploaded files, some out of date.
+
+**What makes up for the manual sync:** two standing rules in the SOP. After every commit to a repo, Claude tells you which projects to sync. At the start of a chat that relies on repo files, Claude compares what it has with the repo and tells you if the project is behind.
+
+**What would change it:** if Claude projects begin syncing GitHub on their own, the second rule can go.
+
+**Knowing what goes where:** files made in a chat are easy to scroll past. So every reply that makes or changes a file ends with a "Where this goes" list (SOP rule 16): the file, where it goes, what to do with it, and why. The usual places:
+
+| Place | What belongs there | Example |
+| --- | --- | --- |
+| A repo, in a named folder | Anything the app runs on or is documented by | `docs/guide.md` in `tour-timer` |
+| A project's Instructions | Standing rules for Claude in that project | The SOP's instructions block |
+| A project's Context | Links to the repo files Claude should read | The `build-standards` repo |
+| Google Drive | Private papers that hold names or are history only | The original handovers |
+| Nowhere | Working copies once the repo has them | A file Claude sent for you to check |
+
+### 32. What is the routine after any change, and who does what?
+
+**Answer:** change, record, run, release, sync. Each step closes a gap that would otherwise cause drift.
+
+| Step | Who | Where | Why |
+| --- | --- | --- | --- |
+| 1. Make the change and commit it with a clear message | Claude prepares and uploads after your yes; or you upload | GitHub, the right folder (entries 28, 29) | The record comes first |
+| 2. Pages changed: raise the cache number in `sw.js` | Claude | GitHub, `sw.js` | Devices fetch the new files (entry 12) |
+| 3. Server code changed: paste it into the editor, then a new version of the existing deployment | You | Apps Script (entry 30) | Only a new version goes live |
+| 4. Add a CHANGELOG entry, including the deployment version and cache | Claude | GitHub, `CHANGELOG.md` | What runs is written down |
+| 5. Tag a release | You | Releases, then Draft a new release: a new tag such as `v1.0.2` on main, a title, notes copied from the CHANGELOG, Publish | A named point to return to (entries 18, 19) |
+| 6. Sync now | You | The app's Claude project, Context | The project sees the new files (entry 31) |
+| 7. Check | Claude | Compares the repo, the editor and the deployment | Catches drift early (entry 20) |
+
+A change to documents only (`docs/`, README, CHANGELOG) needs steps 1, 6 and 7; a release is optional.
+
+---
+
+## Questions asked
+
+Every question asked while building, however simple, is a sign that something needed explaining. Each is logged here with the entry that answers it. If no entry answered it, a new entry was written.
+
+| Date | Question | Answered in |
+| --- | --- | --- |
+| Earlier | I pressed Commit and no message came up; where is step 3? | 29 |
+| Earlier | Why one Claude project per app? | 25 |
+| Earlier | Aren't knowledge files called context files now? | 25 |
+| Earlier | How do I download context files? | 31 (you can't, which is why links are used) |
+| Earlier | Is all the training programme history in GitHub? | 15 |
+| Earlier | Why is a repo public or private? | 21 |
+| 2026-11-14 | Did my 13 November Core.gs paste reach the server, and how can you find out? | 20, 30 |
+| 2026-11-14 | What do I do with the README, SETUP, CHANGELOG, runbook and SOP files? | 31 |
+| 2026-11-14 | Where do the release notes go? | 32 |
+| 2026-11-14 | How do GitHub links in a project make things easier? | 31 |
+| 2026-11-14 | Do codes need changing when the data is only samples? | 22 |
+| 2026-11-14 | Can syncing happen automatically? | 31 |
+| 2026-11-14 | When you tell me to do something on GitHub, where am I and why? | 28, 29, 32 |
+| 2026-11-14 | Which of the files you made go where, and how do I avoid scrolling past them? | 31 |
 
 ## Glossary
 
@@ -423,7 +549,8 @@ The examples come from two apps:
 | Server | A program that holds information several devices share | 3 |
 | Service worker | A helper file that lets pages open without signal | 12 |
 | Static page | A page that is just files, with no server code of its own | 6 |
-| Sync | Sending saved changes and receiving others' changes | 11 |
+| Sync | Sending saved changes and receiving others' changes; in a Claude project, fetching the latest repo files | 11, 31 |
+| Sync now | The Claude project button that fetches the latest GitHub files | 31 |
 | Tag | A permanent label on one commit | 18 |
 | Trigger | An instruction to run a script on a schedule | 5 |
 | TypeScript | JavaScript with built-in checking for mistakes | SOP: Choosing languages |

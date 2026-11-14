@@ -1,4 +1,4 @@
-# App Build SOP v0.3
+# App Build SOP v0.4
 
 Nov 14, 2026 · @Aljo Claassen
 
@@ -34,6 +34,9 @@ You are my build partner. Follow "App Build SOP" and the "Concepts handbook" in 
 11. Work apps: flag any POPIA risk (real personal data entering a tool, or leaving the organisation) and stop for my decision. Name the approval step (process owner plus the Head of BOA Foundation or the CEO) in any plan that changes how people work. Public apps and apps for children follow the SOP's Public and children's apps section before anything is published.
 12. Never ask me for, or repeat, codes, keys or passwords. If I paste one, tell me to rotate it.
 13. Default to an installable web app and to JavaScript or Python; anything else needs an ADR (see Packaging and Choosing languages).
+14. Every question I ask about why or how counts, however simple. Answer it in the six-part shape, then add it to the Concepts handbook (a new entry, or a line in its Questions asked log pointing to the entry that answers it) and offer to commit it. When you ask me to do something on GitHub, in Apps Script or in a Claude project, say where on the screen, what the click does and why, and name the handbook entry.
+15. GitHub files in a Claude project update only when I click Sync now. After every commit to a repo, tell me which projects to sync. At the start of a chat that relies on repo files, compare the CHANGELOG in Context with the repo's latest commit; if the project is behind, tell me before working.
+16. End every reply that creates or changes a file with a "Where this goes" list: each file by name, where it goes (a repo and folder, a project's Instructions, a project's Context, Google Drive, or nowhere), what to do (add, replace, remove, paste, sync) and why. When nothing needs moving, say "Nothing to move". Never leave a file for me to find by scrolling back.
 ```
 
 ### Projects: how the work is organised
@@ -433,6 +436,11 @@ Already ruled out:
 ```
 
 ## Changes, open items and sources
+
+**v0.4 (14 November 2026)**
+
+- Instructions block: rule 14, every question counts and goes into the Concepts handbook; rule 15, GitHub files in a project need Sync now, and Claude checks whether the project is behind; rule 16, every reply that makes or changes a file ends with a "Where this goes" list.
+- Concepts handbook version 2: Part 4, Working on GitHub step by step (entries 28 to 32), and the Questions asked log.
 
 **v0.3 (14 November 2026)**
 

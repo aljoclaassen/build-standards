@@ -6,7 +6,7 @@ One process for every app, script and automation I build, work or personal. Vers
 
 ## How to use this SOP
 
-Export this doc to Markdown (click the doc's name, then Export) and add it to each app project's Context files (called project knowledge in chat projects). Paste the block below into each app project's Instructions. Every repo also carries an AGENTS.md (the rules for this project) and a CLAUDE.md whose first line is `@AGENTS.md`, so Claude, Codex and any other tool read the same rules.
+When this doc changes, export it to Markdown and replace app-build-sop.md in the build-standards repo. Each APP project links to that repo in its Context (GitHub, not an uploaded copy), then Sync now. Paste the block below, all of it, into every APP project's Instructions, replacing any older version of the block. Every repo also carries an AGENTS.md (the rules for this project) and a CLAUDE.md whose first line is `@AGENTS.md`, so Claude, Codex and any other tool read the same rules.
 
 **Scale the ceremony to the cost of being wrong.**
 

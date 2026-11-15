@@ -492,6 +492,10 @@ Every question asked while building, however simple, is a sign that something ne
 | 2026-11-14 | Can syncing happen automatically? | 31 |
 | 2026-11-14 | When you tell me to do something on GitHub, where am I and why? | 28, 29, 32 |
 | 2026-11-14 | Which of the files you made go where, and how do I avoid scrolling past them? | 31 |
+| 2026-11-15 | Where do I find the three new rules to paste? Are the instructions in the SOP the full instructions? | 25 |
+| 2026-11-15 | Can you scan the projects to confirm they hold what they need? | 25, 31 |
+| 2026-11-15 | Does it matter that I deleted the uploads before saving the handovers? | 31 (Context files cannot be downloaded) |
+| 2026-11-15 | What "yes" are you waiting for, and how do I give it? | 29 |
 
 ## Glossary
 
